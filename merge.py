@@ -3,6 +3,8 @@ from pyPdf import PdfFileWriter, PdfFileReader
 
 def mergePDFFiles(outputFile, filesToBeMerged, watermarkOutput=False):
     output = PdfFileWriter()
+    # read onece watermark page
+    watermarkPage = PdfFileReader(file("watermark.pdf", "rb")).getPage(0) if watermarkOutput else None
 
     if(len(filesToBeMerged) == 0):
         print 'Empty Input File List'
@@ -17,9 +19,8 @@ def mergePDFFiles(outputFile, filesToBeMerged, watermarkOutput=False):
         # Add every page in input PDF file to output
         for page in input.pages:
             if watermarkOutput:
-                background = PdfFileReader(file("watermark.pdf", "rb")).getPage(0)
                 # merge in watermark
-                page.mergePage(background)
+                page.mergePage( watermarkPage)
             output.addPage(page)
 
     print 'Writing the final out put to file system'
