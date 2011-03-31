@@ -4,15 +4,16 @@ from pyPdf import PdfFileWriter, PdfFileReader
 def mergePDFFiles(outputFile, filesToBeMerged, watermarkOutput=False):
     output = PdfFileWriter()
     # read onece watermark page
-    watermarkPage = PdfFileReader(file("watermark.pdf", "rb")).getPage(0) if watermarkOutput else None
+    watermarkPage = PdfFileReader(file("watermark.pdf", "rb")).getPage(0) \
+        if watermarkOutput else None
 
     if(len(filesToBeMerged) == 0):
         print 'Empty Input File List'
-        return;
+        return
 
     for inFile in filesToBeMerged:
-        print 'Adding file' + inFile + ' to the output'
-       # Read the input PDF file
+        print 'Adding file %s to the output' % inFile
+        # Read the input PDF file
         input = PdfFileReader(file(inFile, "rb"))
         if input.getIsEncrypted():
         	input.decrypt('')
@@ -40,7 +41,7 @@ if __name__ == '__main__':
         i = i + 1
 
         # Watermark?
-        if arg == '-m':
+        if arg == '-m' or arg == '-w':
             watermarkOutput = True
 
         # Getting out file

@@ -116,8 +116,10 @@ ClassName=TProjectRunConfiguationNode
 Name=failure
 
 [Project\ChildNodes\Node1\ChildNodes\Node2\RunConfig]
+ScriptName=F:\PROJECTS\PDFmerger\merge.py
 EngineType=peRemote
-ReinitializeBeforeRun=FALSE
+ReinitializeBeforeRun=TRUE
+Parameters= -i bad1.pdf bad3.pdf -o out_failure.pdf
 WorkingDir=$[ActiveScript-Dir]
 WriteOutputToFile=FALSE
 OutputFileName=$[ActiveScript-NoExt].log
