@@ -11,3 +11,4 @@ dist*
 build*
 Setup.7z
 *.DS_Store
+*.orig
